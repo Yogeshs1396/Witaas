@@ -1,0 +1,66 @@
+package org.qa.test;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.SearchContext;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
+import org.totalqa.pages.CricketPage;
+import org.totalqa.util.Base;
+import org.totalqa.util.Common;
+
+public class Crickettest extends Base {
+
+	Common c = new Common();
+
+	@Test
+	public void runs() throws IOException {
+
+		CricketPage co = new CricketPage();
+
+		c.find(co.notnow).click();
+		c.find(co.stats).click();
+		c.find(co.battingrecord).click();
+		c.find(co.mostruns).click();
+
+		WebElement wb = driver.findElement(By.xpath("//table[@class='engineTable'][1]/tbody"));
+		List<WebElement> rows = wb.findElements(co.rows);
+		System.out.println("ROWS = " + rows.size());
+		List<WebElement> cols = wb.findElements(co.col);
+		System.out.println("COLS = " + cols.size());
+
+		for (int rnum = 1; rnum <= rows.size() - 1; rnum++) {
+			for (int colnum = 1; colnum <= cols.size(); colnum++) {
+				String team = driver
+						.findElement(By
+								.xpath("//*[@id='ciHomeContentlhs']/div[3]/div/table[1]/tbody/tr[" + rnum + "]/td[8]"))
+						.getText();
+				String opposition = driver
+						.findElement(By
+								.xpath("//*[@id='ciHomeContentlhs']/div[3]/div/table[1]/tbody/tr[" + rnum + "]/td[9]"))
+						.getText();
+				
+				
+				  if (team.contains("India") && opposition.contains("v England"))
+				  System.out.println( driver.findElement(By.xpath(
+				  "//*[@id='ciHomeContentlhs']/div[3]/div/table[1]/tbody/tr[" + rnum + "]/td["
+				  + colnum + "]")).getText());
+				 
+			}
+
+		}
+		
+		
+
+	}
+
+}

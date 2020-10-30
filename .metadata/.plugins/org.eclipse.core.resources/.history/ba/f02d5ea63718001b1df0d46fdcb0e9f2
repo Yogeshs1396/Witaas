@@ -1,0 +1,20 @@
+package org.totalqa.pages;
+
+import org.openqa.selenium.By;
+
+public class RegistrationPage {
+
+	public By Email = By.xpath("//input[@id='email::content']");
+	public By pwd = By.xpath("//input[@id='password::content']");
+	public By pwd2 = By.xpath("//input[@id='retypePassword::content']");
+	public By Country = By.xpath("//select[@id='country::content']");
+	public By fname = By.xpath("//input[@id='firstName::content']");
+	public By lname = By.xpath("//input[@id='lastName::content']");
+	public By job = By.xpath("//input[@id='jobTitle::content']");
+	public By wp = By.xpath("//input[@id='workPhone::content']");
+	public By zip = By.xpath("//input[@id='postalCode::content']");
+	public By company = By.xpath("//input[@id='companyName::content']");
+	public By add = By.xpath("//input[@id='address1::content']");
+	public By city = By.xpath("//input[@id='city::content']");
+
+}

@@ -1,0 +1,39 @@
+package org.qa.test;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
+import org.totalqa.pages.CricketPage;
+import org.totalqa.util.Base;
+import org.totalqa.util.Common;
+
+public class Crickettest extends Base {
+
+	Common c = new Common();
+
+	@Test
+	public void runs() throws IOException {
+
+		CricketPage co = new CricketPage();
+
+		c.find(co.notnow).click();
+		c.find(co.stats).click();
+		// driver.findElement(co.records).click();
+		c.find(co.battingrecord).click();
+		c.find(co.mostruns).click();
+		
+		
+		
+	}
+	
+}

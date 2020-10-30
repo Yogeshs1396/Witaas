@@ -1,0 +1,116 @@
+package org.totalqa.tests;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+import org.totalqa.pages.RegistrationPage;
+import org.totalqa.util.Base;
+
+public class RegistrationTest extends Base {
+
+	RegistrationPage r = new RegistrationPage();
+	WebDriverWait wait;
+
+	@Test
+	public void test() throws IOException
+
+	{
+		new WebDriverWait(driver, 15)
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='New User']")));
+		driver.findElement(By.xpath("//span[text()='New User']")).click();
+		FileInputStream f = new FileInputStream("F:\\Training\\test.xlsx");
+		XSSFWorkbook wb = new XSSFWorkbook(f);
+		XSSFSheet sheet = wb.getSheetAt(0);
+		int row = sheet.getLastRowNum();
+		System.out.println(row);
+		int col = sheet.getRow(0).getLastCellNum();
+		System.out.println(col);
+		for (int i = 1; i <= row; i++) {
+			XSSFRow currentrow = sheet.getRow(i);
+			String Emailv = currentrow.getCell(0).getStringCellValue();
+			String pwdv = currentrow.getCell(1).getStringCellValue();
+			String pwd2v = currentrow.getCell(2).getStringCellValue();
+			String Countryv = currentrow.getCell(3).getStringCellValue();
+			String fnamev = currentrow.getCell(4).getStringCellValue();
+			String lnamev = currentrow.getCell(5).getStringCellValue();
+			String jobv = currentrow.getCell(6).getStringCellValue();
+			String wpv = currentrow.getCell(7).getStringCellValue();
+			String Lang = currentrow.getCell(8).getStringCellValue();
+			String companyv = currentrow.getCell(9).getStringCellValue();
+			String addv = currentrow.getCell(10).getStringCellValue();
+			String cityv = currentrow.getCell(11).getStringCellValue();
+			String state = currentrow.getCell(12).getStringCellValue();
+			String zipv = currentrow.getCell(13).getStringCellValue();
+
+			Actions act = new Actions(driver);
+			act.moveToElement(driver.findElement(By.xpath("//input[@id='email::content']"))).click().perform();
+			driver.findElement(r.Email).click();
+			driver.findElement(r.Email).sendKeys(Emailv);
+			driver.findElement(r.pwd).click();
+			driver.findElement(r.pwd).sendKeys(pwdv);
+			driver.findElement(r.pwd2).click();
+			driver.findElement(r.pwd2).sendKeys();
+			driver.findElement(r.fname).sendKeys(fnamev);
+			driver.findElement(r.lname).sendKeys(lnamev);
+			driver.findElement(r.job).sendKeys(jobv);
+			driver.findElement(r.wp).sendKeys(wpv);
+			driver.findElement(r.zip).sendKeys(zipv);
+			driver.findElement(r.company).sendKeys(addv);
+			driver.findElement(r.add).sendKeys(addv);
+			driver.findElement(r.city).sendKeys(cityv);
+			act.moveToElement(driver.findElement(By.id("state::content"))).click().perform();
+			Select s1 = new Select(driver.findElement(By.id("state::content")));
+			s1.selectByVisibleText(state);
+			WebDriverWait wait2 = new WebDriverWait(driver, 10);
+			wait2.until(ExpectedConditions.elementToBeClickable(By.xpath("//select[@id='language::content']")));
+			WebElement lang = driver.findElement(By.xpath("//select[@id='language::content']"));
+			Select s = new Select(lang);
+			s.selectByVisibleText(Lang);
+
+			for (int j = 0; j <= col; j++) {
+				String cellv = currentrow.getCell(j).toString();
+
+				System.out.print(" " + cellv);
+			}
+			System.out.println();
+		}
+
+		/*
+		 * Actions act = new Actions(driver);
+		 * act.moveToElement(driver.findElement(By.xpath("//input[@id='email::content']"
+		 * ))).click().perform(); driver.findElement(r.Email).click();
+		 * driver.findElement(r.Email).sendKeys("yogeshs1396@gmail.com");
+		 * driver.findElement(r.pwd).click();
+		 * driver.findElement(r.pwd).sendKeys("Yogesh@2020");
+		 * driver.findElement(r.pwd2).click();
+		 * driver.findElement(r.pwd2).sendKeys("Yogesh@2020");
+		 * driver.findElement(r.fname).sendKeys("yogesh");
+		 * driver.findElement(r.lname).sendKeys("sri");
+		 * driver.findElement(r.job).sendKeys("Test");
+		 * driver.findElement(r.wp).sendKeys("1234567890");
+		 * driver.findElement(r.zip).sendKeys("123456");
+		 * driver.findElement(r.company).sendKeys("ipro");
+		 * driver.findElement(r.add).sendKeys("sirpi");
+		 * driver.findElement(r.city).sendKeys("chennai");
+		 * act.moveToElement(driver.findElement(By.id("state::content"))).click().
+		 * perform(); Select s1 = new
+		 * Select(driver.findElement(By.id("state::content"))); s1.selectByValue("30");
+		 * WebDriverWait wait2 = new WebDriverWait(driver, 10);
+		 * wait2.until(ExpectedConditions.elementToBeClickable(By.xpath(
+		 * "//select[@id='language::content']"))); WebElement lang =
+		 * driver.findElement(By.xpath("//select[@id='language::content']")); Select s =
+		 * new Select(lang); s.selectByVisibleText("English");
+		 * 
+		 */	}
+
+}

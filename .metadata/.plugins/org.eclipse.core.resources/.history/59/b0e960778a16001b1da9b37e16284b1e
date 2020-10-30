@@ -1,0 +1,24 @@
+package org.totalqa.pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+public class CricketPage {
+	
+	public By notnow =By.xpath("//*[@id='wzrk-cancel']");
+    public By stats = By.xpath("//*[@id='navbarSupportedContent']/ul/li[6]/a");
+    public By battingrecord=By.xpath("//*[@id='ciHomeContentlhs']/div[2]/div[1]/div[2]/div[2]/ul/li[2]/a");
+    public By mostruns =By.xpath("//*[@id='ciHomeContentlhs']/div[2]/div[1]/div[2]/ul[1]/li[2]/a");
+    public By rows=By.tagName("tr");
+    
+    public By England = By.xpath("//td[text()='England']");
+    public By col=By.tagName("//table[@class='engineTable'][1]/tbody/td");
+    public By webtable =By.xpath("//table[@class='engineTable'][1]/tbody");
+    
+    
+    
+    
+    
+        
+    
+}

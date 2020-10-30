@@ -1,0 +1,5 @@
+package org.totalqa.pages;
+
+public class RegistrationPage {
+
+}

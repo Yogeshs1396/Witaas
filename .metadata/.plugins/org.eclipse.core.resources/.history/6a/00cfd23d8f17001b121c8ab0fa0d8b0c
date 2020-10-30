@@ -1,0 +1,44 @@
+package org.totalqa.util;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
+public class Base {
+	
+	public static WebDriver driver;
+	public static Properties prop = new Properties();
+	
+
+	@BeforeMethod
+
+	public void setup() throws IOException {
+		System.setProperty("webdriver.gecko.driver", "E:\\Selenium\\geckodriver.exe");
+		driver = new FirefoxDriver();
+		InputStream in = new FileInputStream("E:\\eclipse\\TD3\\src\\test\\resources\\config.properties");
+		prop.load(in);
+		driver.get(prop.getProperty("URL"));
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		driver.get("https://partnerstore.oracle.com/apex/ps_ext_links.registeraccess");
+		
+				
+	}
+
+	@AfterMethod
+	public void teardown() {
+		//driver.close();
+
+	}
+
+
+}

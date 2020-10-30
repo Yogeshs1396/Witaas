@@ -1,0 +1,46 @@
+package org.totalqa.tests;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+import org.totalqa.pages.RegistrationPage;
+import org.totalqa.util.Base;
+
+public class RegistrationTest extends Base {
+
+	RegistrationPage r = new RegistrationPage();
+	WebDriverWait wait;
+
+	@Test
+	public void test()
+
+	{
+		driver.findElement(By.xpath("//span[text()='New User']")).click();
+		new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(r.Email));
+		driver.findElement(r.Email).sendKeys("yogeshs1396@gmail.com");
+		driver.findElement(r.pwd).sendKeys("yogesh");
+		driver.findElement(r.pwd2).sendKeys("yogesh");
+		driver.findElement(r.fname).sendKeys("yogesh");
+		driver.findElement(r.lname).sendKeys("sri");
+		driver.findElement(r.job).sendKeys("Test");
+		driver.findElement(r.wp).sendKeys("1234567890");
+		WebElement lang=driver.findElement(By.xpath("//select[@id='language::content']"));
+		Select s= new Select(lang);
+		s.selectByVisibleText("English");
+		driver.findElement(r.zip).sendKeys("123456");
+		driver.findElement(r.company).sendKeys("ipro");
+		driver.findElement(r.add).sendKeys("sirpi");
+		driver.findElement(r.city).sendKeys("chennai");
+		WebElement state= driver.findElement(By.xpath("//select[@id='state::content']"));
+		Select s1= new Select(state);
+		s1.selectByValue("30");
+		
+		
+	}
+
+}
